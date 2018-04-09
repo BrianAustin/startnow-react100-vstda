@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
 
+    };
+  }
 
 
   render() {
@@ -11,7 +17,7 @@ class App extends Component {
 
         <div className='page-header'>
           <h1 className='text-white'>Very Simple Todo App</h1>
-          <p className='lead text-white'>Track all of the things (and be cute everyday, yo!)</p>
+          <p className='lead text-white'>Track all of the things</p>
         </div>
         <form>
           <div className='row'>
@@ -46,8 +52,11 @@ class App extends Component {
               <div className='panel panel-default'>
                 <div className='panel-heading'>View Todos</div>
                 <div className='panel-body'>
-                  <div className='alert alert-info'>
-                  </div>
+                  
+                  {/* Insert todo components here?????? */}
+                  
+                  {/* <div className='alert alert-info'>
+                  </div> */}
                 </div>
               </div>  
             </div>
