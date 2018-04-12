@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
 
-const TODOs = [
-  {text: 'Do grocery shopping', priority: 1, editEnabled: false},
-  {text: 'Give a puppy a belly rub', priority: 2, editEnabled: false},
-  {text: 'Learn interpretive dance', priority: 3, editEnabled: false}
-];
 //below is FilterableTodoList (in my notes) but appears here as App. Top level component, holds state
 class App extends Component {
   constructor(props) {
     super(props);
+    const todos = [
+      {text: 'Do grocery shopping', priority: 1, editEnabled: false},
+      {text: 'Give a puppy a belly rub', priority: 2, editEnabled: false},
+      {text: 'Learn interpretive dance', priority: 3, editEnabled: false}
+    ];
     
     this.state = {
-      text: '',
-      priority: '',
-      editEnabled: false
+      todos
     };
   }
 
   render() {
+    console.log(this.props);
     return (
 
       <div className='container'>
@@ -28,7 +27,7 @@ class App extends Component {
         <form>
           <div className='row'>
             <AddNewTodo />
-            <ViewTodos />
+            <ViewTodos todos={this.state.todos} />
           {/* end row div */}
           </div>  
         </form>
@@ -74,7 +73,10 @@ class AddNewTodo extends Component {
 }
 
 class ViewTodos extends Component {
+
   render() {
+    //console.log(this.props);
+    
     return(
       <div className='col-md-8'>
         <div className='panel panel-default'>
@@ -87,12 +89,17 @@ class ViewTodos extends Component {
             </div>
               {/* Todo List below */}
             <ul className='list-group list-group-flush'>
-              <li className='list-group-item list-group-item-success'>
-                <input className='form-check-input position-static' type='checkbox' value='' />
-                Success Test <button className='btn btn-link float-right'><span className='delete-todo glyphicon glyphicon-trash float-right'></span></button>
-                <button className='btn btn-link float-right'><span className='edit-todo glyphicon glyphicon-edit float-right'></span></button>
-              </li>
-              <li className='list-group-item list-group-item-warning'>
+              {this.props.todos.map(function(todo, i) {
+                return (<li key={i} className='list-group-item list-group-item-success'>
+                  <input className='form-check-input position-static' type='checkbox' value='' />
+                  {todo.text} <button className='btn btn-link float-right'><span className='delete-todo glyphicon glyphicon-trash float-right'></span></button>
+                  <button className='btn btn-link float-right'><span className='edit-todo glyphicon glyphicon-edit float-right'></span></button>
+                </li>)
+                })
+              }
+            </ul>
+
+              {/* <li className='list-group-item list-group-item-warning'>
                 <input className='form-check-input position-static' type='checkbox' value='' />
                 Warning Test <button className='btn btn-link float-right'><span className='delete-todo glyphicon glyphicon-trash float-right'></span></button>
                 <button className='btn btn-link float-right'><span className='edit-todo glyphicon glyphicon-edit float-right'></span></button>
@@ -101,8 +108,8 @@ class ViewTodos extends Component {
                 <input className='form-check-input position-static' type='checkbox' value='' />
                 Danger Test <button className='btn btn-link float-right'><span className='delete-todo glyphicon glyphicon-trash float-right'></span></button>
                 <button className='btn btn-link float-right'><span className='edit-todo glyphicon glyphicon-edit float-right'></span></button>
-              </li>        
-            </ul>
+              </li> */}
+
               {/* End Todo List Section*/}
           </div>
         </div>
