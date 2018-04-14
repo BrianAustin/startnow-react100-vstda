@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { TodoItems } from './TodoItems';
+import { EmptyListGreeting } from './EmptyListGreeting';
 
-//below is FilterableTodoList (in my notes) but appears here as App. Top level component, holds state
+// Top level component, holds state
 class App extends Component {
   constructor(props) {
     super(props);
@@ -76,10 +77,7 @@ class ViewTodos extends Component {
   constructor (props) {
     super(props);
   }
-
-  render() {
-    console.log(this.props);
-    // function priorityColor() {
+    // priorityColor() {
     //   const priorityNum = this.props.todos.priority;
     //   switch (priorityNum) {
     //     case 1:
@@ -91,18 +89,16 @@ class ViewTodos extends Component {
     //   }
     // };
 
+  render() {
+    console.log(this.props);
 
     return(
       <div className='col-md-8'>
         <div className='panel panel-default'>
           <div className='panel-heading'>View Todos</div>
           <div className='panel-body'>
-              {/* EmptyListGreeting below */}
-            <div className='alert alert-info'>
-              <p><strong>No current todos. Perhaps your list is finished!?!</strong></p>
-              <p>Add a new todo on the left.</p>
-            </div>
-              {/* Todo List below */}
+              {/* EmptyListGreeting or Todo List below */}
+              <EmptyListGreeting />
 
               <TodoItems todos={this.props.todos} />
 

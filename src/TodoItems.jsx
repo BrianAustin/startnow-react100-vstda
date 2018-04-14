@@ -1,11 +1,11 @@
 import React from 'react';
-
+// Child component of ViewTodos
 export class TodoItems extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
-        console.log(this.props);
+        //console.log(this.props);
         return (
           <ul className='list-group list-group-flush'>
             {this.props.todos.map(function(todo, i) {
