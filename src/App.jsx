@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { TodoItems } from './TodoItems';
 
 //below is FilterableTodoList (in my notes) but appears here as App. Top level component, holds state
 class App extends Component {
@@ -16,7 +17,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
 
       <div className='container'>
@@ -73,10 +73,25 @@ class AddNewTodo extends Component {
 }
 
 class ViewTodos extends Component {
+  constructor (props) {
+    super(props);
+  }
 
   render() {
-    //console.log(this.props);
-    
+    console.log(this.props);
+    // function priorityColor() {
+    //   const priorityNum = this.props.todos.priority;
+    //   switch (priorityNum) {
+    //     case 1:
+    //       return 'list-group-item list-group-item-success';
+    //     case 2:
+    //       return 'list-group-item list-group-item-warning';
+    //     case 3:
+    //       return 'list-group-item list-group-item-danger';    
+    //   }
+    // };
+
+
     return(
       <div className='col-md-8'>
         <div className='panel panel-default'>
@@ -88,27 +103,8 @@ class ViewTodos extends Component {
               <p>Add a new todo on the left.</p>
             </div>
               {/* Todo List below */}
-            <ul className='list-group list-group-flush'>
-              {this.props.todos.map(function(todo, i) {
-                return (<li key={i} className='list-group-item list-group-item-success'>
-                  <input className='form-check-input position-static' type='checkbox' value='' />
-                  {todo.text} <button className='btn btn-link float-right'><span className='delete-todo glyphicon glyphicon-trash float-right'></span></button>
-                  <button className='btn btn-link float-right'><span className='edit-todo glyphicon glyphicon-edit float-right'></span></button>
-                </li>)
-                })
-              }
-            </ul>
 
-              {/* <li className='list-group-item list-group-item-warning'>
-                <input className='form-check-input position-static' type='checkbox' value='' />
-                Warning Test <button className='btn btn-link float-right'><span className='delete-todo glyphicon glyphicon-trash float-right'></span></button>
-                <button className='btn btn-link float-right'><span className='edit-todo glyphicon glyphicon-edit float-right'></span></button>
-              </li>
-              <li className='list-group-item list-group-item-danger'>
-                <input className='form-check-input position-static' type='checkbox' value='' />
-                Danger Test <button className='btn btn-link float-right'><span className='delete-todo glyphicon glyphicon-trash float-right'></span></button>
-                <button className='btn btn-link float-right'><span className='edit-todo glyphicon glyphicon-edit float-right'></span></button>
-              </li> */}
+              <TodoItems todos={this.props.todos} />
 
               {/* End Todo List Section*/}
           </div>
