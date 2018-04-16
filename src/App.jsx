@@ -90,8 +90,6 @@ class ViewTodos extends Component {
     // };
 
   render() {
-    console.log(this.props);
-
     return(
       <div className='col-md-8'>
         <div className='panel panel-default'>
