@@ -14,11 +14,3 @@ export class EmptyListGreeting extends React.Component {
         );
     }
 }
-
-// emptyTodosOrNot() {
-//     if(todos.length === 0) {
-//         return <EmptyListGreeting />
-//     } else {
-//         return <TodoItems todos={this.props.todos} />
-//     }
-// }
