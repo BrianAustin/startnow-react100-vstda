@@ -7,8 +7,7 @@ export class TodoItems extends React.Component {
     this.priorityColor = this.priorityColor.bind(this);
   }
 
-  priorityColor() {
-    let priorityNum = this.props.todos.priority;
+  priorityColor(priorityNum) {
     switch (priorityNum) {
       case 1:
         return 'list-group-item list-group-item-success';
@@ -20,12 +19,11 @@ export class TodoItems extends React.Component {
   };
 
   render() {
-    console.log('hello');
       return (
         <ul className='list-group list-group-flush'>
-          {this.props.todos.map(function(todo, i) {
+          {this.props.todos.map((todo, i) => {
             return (
-              <li key={i} className='list-group-item list-group-item-success'>
+              <li key={i} className={this.priorityColor(todo.priority)}>
                 <input 
                   className='form-check-input position-static' 
                   type='checkbox' 
