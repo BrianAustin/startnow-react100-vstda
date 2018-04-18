@@ -6,17 +6,6 @@ export class ViewTodos extends React.Component {
   constructor (props) {
     super(props);
   }
-    // priorityColor() {
-    //   const priorityNum = this.props.todos.priority;
-    //   switch (priorityNum) {
-    //     case 1:
-    //       return 'list-group-item list-group-item-success';
-    //     case 2:
-    //       return 'list-group-item list-group-item-warning';
-    //     case 3:
-    //       return 'list-group-item list-group-item-danger';    
-    //   }
-    // };
 
   //   emptyTodosOrNot() {
   //     if(todos.length === 0) {
@@ -60,8 +49,12 @@ export class ViewTodos extends React.Component {
                   <option value='3'>High Priority</option>
                 </select>
             </div>  
-              <button name='button' className='update-todo btn btn-success float-right'>Save</button>
+              <button 
+                name='button' 
+                className='update-todo btn btn-success float-right'>
+                  Save</button>
           </div>
+
         </div>
         {/* End col-8 div below */}
       </div>
