@@ -9,9 +9,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     const todos = [
-      {text: 'Do grocery shopping', priority: 1, editEnabled: false, id: 1524003462111},
-      {text: 'Give a puppy a belly rub', priority: 2, editEnabled: false, id: 1524003485690},
-      {text: 'Learn interpretive dance', priority: 3, editEnabled: false, id: 1524003512947}
+      {text: 'Do grocery shopping', priority: '1', editEnabled: false, id: 1524003462111},
+      {text: 'Give a puppy a belly rub', priority: '2', editEnabled: false, id: 1524003485690},
+      {text: 'Learn interpretive dance', priority: '3', editEnabled: false, id: 1524003512947}
     ];
     
     this.state = {
