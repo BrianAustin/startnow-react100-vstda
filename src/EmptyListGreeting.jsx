@@ -9,7 +9,7 @@ export class EmptyListGreeting extends React.Component {
         return (
             <div className='alert alert-info'>
                 <p><strong>No current todos. Perhaps your list is finished!?!</strong></p>
-                <p>Add a new todo on the left.</p>
+                <p>Add a new todo on the left. Get your life together!</p>
             </div>
         );
     }

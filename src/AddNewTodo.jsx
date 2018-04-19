@@ -18,10 +18,10 @@ export class AddNewTodo extends React.Component {
     e.preventDefault();
     let idStamp = new Date().valueOf();
 
-    console.log(this.state.text);
-    console.log(this.state.priority);
-    console.log(this.state.editEnabled);
-    console.log(idStamp);
+    // console.log(this.state.text);
+    // console.log(this.state.priority);
+    // console.log(this.state.editEnabled);
+    // console.log(idStamp);
 
     if(this.state.text == '' || this.state.priority === 0) {
       return alert('Please write some text and/or pick a priority')
@@ -62,7 +62,7 @@ export class AddNewTodo extends React.Component {
           <div className='panel-heading'>Add New Todo</div>
           <div className='panel-body'>
             <div className='form-group'>
-              <label for='todo-text-label'>I want to...</label>
+              <label name='todo-text-label'>I want to...</label>
                 <textarea 
                   name='todo-text' 
                   type='text' rows='3' 
@@ -71,7 +71,7 @@ export class AddNewTodo extends React.Component {
                   onChange={this.updateCreateTodoText} />
             </div>
             <div className='form-group'>
-              <label for='priority'>How much of a priority is this?</label>  
+              <label name='priority'>How much of a priority is this?</label>  
                 <select 
                   name='term'  
                   className='create-todo-priority form-control input-md'

@@ -16,6 +16,8 @@ export class TodoItems extends React.Component {
     }
   };
 
+
+
   render() {
       return (
           <ul className='list-group list-group-flush'>
@@ -40,7 +42,7 @@ export class TodoItems extends React.Component {
                 return (
                   <li key={i} className={this.priorityColor(todo.priority)}>
                     <div className='form-group'>
-                      <label for='todo-text-label'>Description</label>
+                      <label name='todo-text-label'>Description</label>
                         <textarea 
                           name='todo-text' 
                           type='text' 
@@ -50,7 +52,7 @@ export class TodoItems extends React.Component {
                         ></textarea>
                     </div>
                     <div className='form-group'>
-                      <label for='priority'>Priority</label>  
+                      <label name='priority'>Priority</label>  
                         <select 
                           name='term'  
                           className='update-todo-priority form-control input-md'
@@ -69,8 +71,6 @@ export class TodoItems extends React.Component {
                   </li>  
                 )
               }
-
-
             })
           }
         </ul>

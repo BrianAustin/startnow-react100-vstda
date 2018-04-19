@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { AddNewTodo } from './AddNewTodo';
 import { ViewTodos } from './ViewTodos';
-import { TodoItems } from './TodoItems';
 import { EmptyListGreeting } from './EmptyListGreeting';
 
 // Top level component, holds state
@@ -18,6 +17,8 @@ class App extends Component {
       todos,
     };
     this.createTodo = this.createTodo.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
   
   createTodo(todo) {
@@ -26,8 +27,17 @@ class App extends Component {
     todos.push(todo);
     this.setState({ todos });
   }
+  //below method for edit button on ViewTodos
+  handleEdit(todoId) {
+    
+  }
+  //below method for delete button on ViewTodos
+  handleDelete(todoId) {
+
+  }
 
   render() {
+    //console.log(this.state.todos.length);
     return (
       <div className='container'>
         <div className='page-header'>
@@ -36,7 +46,10 @@ class App extends Component {
         </div>
           <div className='row'>
             <AddNewTodo createTodo={this.createTodo} />
-            <ViewTodos todos={this.state.todos}  />
+            <ViewTodos 
+              todos={this.state.todos}
+              handleEdit={this.handleEdit}
+              handleDelete={this.handleDelete} />
           {/* end row div */}
           </div>  
       {/* end container div */}
