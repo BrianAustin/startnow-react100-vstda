@@ -6,7 +6,7 @@ export class ViewTodos extends React.Component {
   constructor (props) {
     super(props);
   }
-
+  //NOTE: for below, try using arrow function when inserting below so you don't screw up the 'this'
   //   emptyTodosOrNot() {
   //     if(todos.length === 0) {
   //         return <EmptyListGreeting />
@@ -26,38 +26,9 @@ export class ViewTodos extends React.Component {
               <EmptyListGreeting />
               <TodoItems todos={this.props.todos} />
 
-              {/* End Todo List Section*/}
           </div>
         </div>
-          {/* Edit Todo below */}
-          <div className='panel panel-default'>
-          <div className='panel-body'>
-            <div className='form-group'>
-              <label for='todo-text-label'>Description</label>
-                <textarea name='todo-text' type='text' rows='3' className='update-todo-text form-control input-md' />
-            </div>
-            <div className='form-group'>
-              <label for='priority'>Priority</label>  
-                <select 
-                  name='term'  
-                  className='update-todo-priority form-control input-md'
-                  size='1' 
-                  type='number'>
-                  <option value='0'>Select a Priority</option>
-                  <option value='1'>Low Priority</option>
-                  <option value='2'>Medium Priority</option>
-                  <option value='3'>High Priority</option>
-                </select>
-            </div>  
-              <button 
-                name='button' 
-                className='update-todo btn btn-success float-right'>
-                  Save</button>
-          </div>
-
-        </div>
-        {/* End col-8 div below */}
-      </div>
+      </div>        
     );
   }
 }
