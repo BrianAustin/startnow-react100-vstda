@@ -16,8 +16,6 @@ export class TodoItems extends React.Component {
     }
   };
 
-
-
   render() {
       return (
           <ul className='list-group list-group-flush'>
@@ -34,7 +32,9 @@ export class TodoItems extends React.Component {
                     <span className='delete-todo glyphicon glyphicon-trash float-right'></span>
                     </span>
                     <span 
-                      className='btn btn-link float-right'>
+                      className='btn btn-link float-right edit-todo'
+                      onChange={this.props.editTodoCatchId}
+                      onClick={this.props.handleEditClick}>
                     <span className='edit-todo glyphicon glyphicon-edit float-right'></span>
                     </span>
                   </li>)

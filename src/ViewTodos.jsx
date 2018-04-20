@@ -11,8 +11,9 @@ export class ViewTodos extends React.Component {
         return <EmptyListGreeting />
     } else {
         return <TodoItems todos={this.props.todos}
-                          handleEdit={this.props.handleEdit}
-                          handleDelete={this.props.handleDelete} />
+                          handleEditClick={this.props.handleEditClick}
+                          handleDeleteClick={this.props.handleDeleteClick}
+                          editTodoCatchId={this.editTodoCatchId} />
     }
   }
   
