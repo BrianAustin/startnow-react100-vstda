@@ -21,12 +21,15 @@ class App extends Component {
       id: 0,
       isCompleted: false
     };
+    this.handleCreate = this.handleCreate.bind(this);
     this.createTodo = this.createTodo.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
-    //this.handleDelete = this.handleDeleteClick.bind(this);
+    this.handleEditingSaveClick = this.handleEditingSaveClick.bind(this);
+    this.updateEditingTodoText = this.updateEditingTodoText.bind(this);
+    this.updateEditingPriority = this.updateEditingPriority.bind(this);
     this.updateCreateTodoText = this.updateCreateTodoText.bind(this);
     this.updateTodoPriority = this.updateTodoPriority.bind(this);
-    this.handleCreate = this.handleCreate.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
   }
 
   handleCreate(e) {
@@ -83,7 +86,47 @@ class App extends Component {
     todos.splice(this.editIndexNum, 1, todo);
     this.setState({ todos });
   }
-  
+
+  handleEditingSaveClick(e) {
+    e.preventDefault();
+
+    if(this.state.text == '' || this.state.priority == '0') {
+      return alert('Please edit your text and/or pick a priority')
+    } else {
+      let todo = {
+        text: this.state.text,
+        priority: this.state.priority,
+        editEnabled: false,
+      }
+      this.saveEditingTodo(todo);
+      //resetting state after user saves
+      this.setState({ 
+        text: '',
+        priority: 0,
+        id: 0
+      })
+    }
+  }
+
+  saveEditingTodo(todo) {
+    let todos = [...this.state.todos];
+
+    todos.splice(this.editIndexNum, 1, todo);
+    this.setState({ todos });
+  }
+  //two below for editing todos
+  updateEditingTodoText(e) {
+    this.setState({
+      text: e.target.value
+    });
+  }
+
+  updateEditingPriority(e) {
+    this.setState({
+      priority: e.target.value
+    });
+  }
+  //two below for creating new todo
   updateCreateTodoText(e) {
     this.setState({
       text: e.target.value
@@ -95,15 +138,21 @@ class App extends Component {
       priority: e.target.value
     });
   }
-
   //below method for delete button on ViewTodos
-  handleDeleteClick(todoId) {
-
+  handleDeleteClick(id) {
+    for(var i in this.state.todos) {
+      if(this.state.todos[i].id == id) {
+        var deleteTodo = this.state.todos[i];
+        this.deleteIndexNum = i;
+      }
+    }
+    let todos = [...this.state.todos];
+    todos.splice(this.deleteIndexNum, 1,);
+    this.setState({ todos });
   }
 
   render() {
-    //console.log(this.state.id);
-    //console.log(todoBeingEdited);
+
     return (
       <div className='container'>
         <div className='page-header'>
@@ -121,6 +170,10 @@ class App extends Component {
             <ViewTodos 
               todos={this.state.todos}
               handleEditClick={this.handleEditClick}
+              handleDeleteClick={this.handleDeleteClick}
+              updateEditingTodoText={this.updateEditingTodoText}
+              updateEditingPriority={this.updateEditingPriority}
+              handleEditingSaveClick={this.handleEditingSaveClick}
               handleDeleteClick={this.handleDeleteClick} />
           {/* end row div */}
           </div>  

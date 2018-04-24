@@ -38,7 +38,7 @@ export class AddNewTodo extends React.Component {
             <div className='panel-footer'>
               <button 
                 name='button' 
-                className='btn btn-success form-control'>Add</button>
+                className='create-todo btn btn-success form-control'>Add</button>
             </div>  
           </div>
         </div>
