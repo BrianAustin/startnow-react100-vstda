@@ -6,7 +6,6 @@ export class AddNewTodo extends React.Component {
   }
 
   render() {
-
     return(
       <form className='col-md-4' onSubmit={this.props.handleCreate}>
         <div className='panel panel-default'>

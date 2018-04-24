@@ -22,7 +22,6 @@ class App extends Component {
       isCompleted: false
     };
     this.createTodo = this.createTodo.bind(this);
-    this.editTodoCatchId = this.editTodoCatchId.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
     //this.handleDelete = this.handleDeleteClick.bind(this);
     this.updateCreateTodoText = this.updateCreateTodoText.bind(this);
@@ -61,14 +60,28 @@ class App extends Component {
     this.setState({ todos });
   }
 
-  // updateTodoArray(todo) {
+  handleEditClick(id) {
+    for(var i in this.state.todos) {
+      if(this.state.todos[i].id == id) {
+        var editTodo = this.state.todos[i]
+        this.editIndexNum = i;
+      }
+    }
+    let todo = {
+      text: editTodo.text,
+      priority: editTodo.priority,
+      editEnabled: true,
+      id: editTodo.id,
+      isCompleted: editTodo.isCompleted
+    }
+    this.updateTodo(todo);
+  }
 
-  // }
+  updateTodo(todo) {
+    let todos = [...this.state.todos];
 
-  editTodoCatchId(e) {
-    this.setState({
-      id: e.target.value
-    });
+    todos.splice(this.editIndexNum, 1, todo);
+    this.setState({ todos });
   }
   
   updateCreateTodoText(e) {
@@ -82,29 +95,15 @@ class App extends Component {
       priority: e.target.value
     });
   }
-  //below method for edit button on ViewTodos
-  handleEditClick(e) {
-    e.preventDefault();
 
-    this.setState({ id: e.target.value })
-
-    // let todo = {
-    //   editEnabled: this.state.editEnabled
-    // }
-    //this.updateTodoArray(todo);
-
-    //below line resets editEnabled default (false) after user submital
-    this.setState({ 
-      editEnabled: false
-    })
-  }
   //below method for delete button on ViewTodos
   handleDeleteClick(todoId) {
 
   }
 
   render() {
-    //console.log(this.state.todos.length);
+    //console.log(this.state.id);
+    //console.log(todoBeingEdited);
     return (
       <div className='container'>
         <div className='page-header'>
@@ -112,15 +111,15 @@ class App extends Component {
           <p className='lead text-white'>Track all of the things</p>
         </div>
           <div className='row'>
-            <AddNewTodo todos={this.state.todos}
-                        text={this.state.text}
-                        priority={this.state.priority}
-                        handleCreate={this.handleCreate}
-                        updateCreateTodoText={this.updateCreateTodoText}
-                        updateTodoPriority={this.updateTodoPriority} />
+            <AddNewTodo 
+              todos={this.state.todos}
+              text={this.state.text}
+              priority={this.state.priority}
+              handleCreate={this.handleCreate}
+              updateCreateTodoText={this.updateCreateTodoText}
+              updateTodoPriority={this.updateTodoPriority} />
             <ViewTodos 
               todos={this.state.todos}
-              editTodoCatchId={this.editTodoCatchId}
               handleEditClick={this.handleEditClick}
               handleDeleteClick={this.handleDeleteClick} />
           {/* end row div */}

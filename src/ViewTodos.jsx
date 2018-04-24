@@ -12,8 +12,7 @@ export class ViewTodos extends React.Component {
     } else {
         return <TodoItems todos={this.props.todos}
                           handleEditClick={this.props.handleEditClick}
-                          handleDeleteClick={this.props.handleDeleteClick}
-                          editTodoCatchId={this.editTodoCatchId} />
+                          handleDeleteClick={this.props.handleDeleteClick} />
     }
   }
   

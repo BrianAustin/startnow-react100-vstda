@@ -33,8 +33,7 @@ export class TodoItems extends React.Component {
                     </span>
                     <span 
                       className='btn btn-link float-right edit-todo'
-                      onChange={this.props.editTodoCatchId}
-                      onClick={this.props.handleEditClick}>
+                      onClick={e => {this.props.handleEditClick(todo.id)}}>
                     <span className='edit-todo glyphicon glyphicon-edit float-right'></span>
                     </span>
                   </li>)
