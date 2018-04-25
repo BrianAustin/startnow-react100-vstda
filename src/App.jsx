@@ -8,9 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     const todos = [
-      {text: 'Do grocery shopping', priority: '1', editEnabled: false, id: 1524003462111, isCompleted: false},
-      {text: 'Give a puppy a belly rub', priority: '2', editEnabled: false, id: 1524003485690, isCompleted: false},
-      {text: 'Learn interpretive dance', priority: '3', editEnabled: false, id: 1524003512947, isCompleted: false}
+
     ];
     
     this.state = {
@@ -36,9 +34,9 @@ class App extends Component {
     e.preventDefault();
     let idStamp = new Date().valueOf();
 
-    if(this.state.text == '' || this.state.priority == '0') {
-      return alert('Please write some text and/or pick a priority')
-    } else {
+    // if(this.state.text == '' || this.state.priority == '0') {
+    //   return alert('Please write some text and/or pick a priority')
+    // } else {
       let todo = {
         text: this.state.text,
         priority: this.state.priority,
@@ -53,7 +51,7 @@ class App extends Component {
         priority: 0,
         id: 0
       })
-    }  
+    // }  
   }
 
   createTodo(todo) {
@@ -90,9 +88,9 @@ class App extends Component {
   handleEditingSaveClick(e) {
     e.preventDefault();
 
-    if(this.state.text == '' || this.state.priority == '0') {
-      return alert('Please edit your text and/or pick a priority')
-    } else {
+    // if(this.state.text == '' || this.state.priority == '0') {
+    //   return alert('Please edit your text and/or pick a priority')
+    // } else {
       let todo = {
         text: this.state.text,
         priority: this.state.priority,
@@ -105,7 +103,7 @@ class App extends Component {
         priority: 0,
         id: 0
       })
-    }
+    // }
   }
 
   saveEditingTodo(todo) {
