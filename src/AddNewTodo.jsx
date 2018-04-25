@@ -15,7 +15,7 @@ export class AddNewTodo extends React.Component {
               <label name='todo-text-label'>I want to...</label>
                 <textarea  
                   type='text' rows='3' 
-                  className='create-todo-text'
+                  className='form-control input-md create-todo-text'
                   value={this.props.text} 
                   onChange={this.props.updateCreateTodoText} />
             </div>
@@ -23,7 +23,7 @@ export class AddNewTodo extends React.Component {
               <label name='priority'>How much of a priority is this?</label>  
                 <select 
                   name='term'  
-                  className='create-todo-priority'
+                  className='form-control input-md create-todo-priority'
                   size='1' 
                   type='number'
                   value={this.props.priority}
@@ -37,7 +37,7 @@ export class AddNewTodo extends React.Component {
             <div className='panel-footer'>
               <button 
                 name='button' 
-                className='create-todo'>Add</button>
+                className='btn btn-success form-control create-todo'>Add</button>
             </div>  
           </div>
         </div>
