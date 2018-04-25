@@ -151,6 +151,25 @@ class App extends Component {
     this.setState({ todos });
   }
 
+  // handleFormCheckInput(id) {
+  //   for(var i in this.state.todos) {
+  //     if(this.state.todos[i].id == id) {
+  //       var toggleIsCompleted = this.state.todos[i];
+  //       this.toggleIndexNumIsCompleted = i;
+  //     }
+  //   }
+  //   let todo = {
+  //     text: this.state.text,
+  //     priority: this.state.priority,
+  //     editEnabled: this.state.editEnabled,
+  //     id: this.state.id,
+  //     isCompleted: toggleIsCompleted.isCompleted ? false : true
+  //   }
+  //   let todos = [...this.state.todos];
+  //   todos.splice(this.toggleIndexNumIsCompleted, 1, 1)
+  //   this.setState({ todos });
+  // }
+
   render() {
 
     return (

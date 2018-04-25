@@ -16,6 +16,8 @@ export class TodoItems extends React.Component {
     }
   };
 
+  completedCheckbox
+
   render() {
       return (
           <ul className='list-group list-group-flush'>
@@ -29,15 +31,15 @@ export class TodoItems extends React.Component {
                       value='' />
                         {todo.text} 
                     <span 
-                      className='delete-todo btn btn-link float-right'
+                      className='btn btn-link float-right delete-todo'
                       onClick={e => {this.props.handleDeleteClick(todo.id)}}>
-                    <span className='delete-todo glyphicon glyphicon-trash float-right'></span>
+                    <span className='glyphicon glyphicon-trash float-right delete-todo'></span>
                     </span>
                     <span 
                       className='btn btn-link float-right edit-todo'
                       onClick={e => {this.props.handleEditClick(todo.id)}}>
                     <span 
-                      className='edit-todo glyphicon glyphicon-edit float-right'></span>
+                      className='glyphicon glyphicon-edit float-right edit-todo'></span>
                     </span>
                   </li>)
               } else {
@@ -50,7 +52,7 @@ export class TodoItems extends React.Component {
                           type='text' 
                           rows='3'
                           defaultValue={todo.text} 
-                          className='update-todo-text form-control input-md'
+                          className='form-control input-md update-todo-text'
                           onChange={this.props.updateEditingTodoText}
                         ></textarea>
                     </div>
@@ -58,7 +60,7 @@ export class TodoItems extends React.Component {
                       <label name='priority'>Priority</label>  
                         <select 
                           name='term'  
-                          className='update-todo-priority form-control input-md'
+                          className='form-control input-md update-todo-priority'
                           size='1' 
                           type='number'
                           onChange={this.props.updateEditingPriority}>
@@ -70,7 +72,7 @@ export class TodoItems extends React.Component {
                     </div>  
                       <button 
                         name='button' 
-                        className='update-todo btn btn-success float-right'
+                        className='btn btn-success float-right update-todo'
                         onClick={this.props.handleEditingSaveClick}
                       >Save</button>
                   </li>  
