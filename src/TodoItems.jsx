@@ -5,18 +5,38 @@ export class TodoItems extends React.Component {
     super(props);
   }
 
-  priorityColor(priorityNum) {
-    switch (priorityNum) {
-      case '1':
-        return 'list-group-item list-group-item-success';
-      case '2':
-        return 'list-group-item list-group-item-warning';
-      case '3':
-        return 'list-group-item list-group-item-danger';    
+  priorityColorAndIsCompleted(priorityNum, completeOrNot) {
+    if(priorityNum == '1' && completeOrNot == false) {
+      return 'list-group-item list-group-item-success';
+    } else if (priorityNum == '1' && completeOrNot === true) {
+      return 'list-group-item list-group-item-success strike-through';
+    } else if (priorityNum == '2' && completeOrNot === false) {
+      return 'list-group-item list-group-item-warning';
+    } else if (priorityNum == '2' && completeOrNot === true) {
+      return 'list-group-item list-group-item-warning strike-through';
+    } else if (priorityNum == '3' && completeOrNot === false) {
+      return 'list-group-item list-group-item-danger';
+    } else if (priorityNum == '3' && completeOrNot === true) {
+      return 'list-group-item list-group-item-danger strike-through';
+    } else if (priorityNum == '1') {
+      return 'list-group-item list-group-item-success';
+    } else if (priorityNum == '2') {
+      return 'list-group-item list-group-item-warning';
+    } else if (priorityNum == '3') {
+      return 'list-group-item list-group-item-danger';
     }
   };
 
-  completedCheckbox
+  // strikethroughToggle(isCompleted) {
+  //   // const caseFalse = 
+  //   // const caseTrue = 
+  //   switch (isCompleted) {
+  //     case false:
+  //       return (<div>{todo.text}</div>);
+  //     case true:
+  //       return (<s>{todo.text}</s>); 
+  //   }
+  // };
 
   render() {
       return (
@@ -24,12 +44,14 @@ export class TodoItems extends React.Component {
             {this.props.todos.map((todo, i) => {
               if(todo.editEnabled == false) {
                 return (
-                  <li key={i} className={this.priorityColor(todo.priority)}>
+                  <li key={i} className={this.priorityColorAndIsCompleted(todo.priority, todo.isCompleted)}>
                     <input 
                       className='form-check-input position-static' 
                       type='checkbox' 
-                      value='' />
-                        {todo.text} 
+                      value=''
+                      onClick={e => {this.props.handleFormCheckboxInput(todo.id)}} />
+                        {todo.text}
+                        {/* {this.strikethroughToggle(todo.isCompleted)}  */}
                     <span 
                       className='btn btn-link float-right delete-todo'
                       onClick={e => {this.props.handleDeleteClick(todo.id)}}>
@@ -44,7 +66,7 @@ export class TodoItems extends React.Component {
                   </li>)
               } else {
                 return (
-                  <li key={i} className={this.priorityColor(todo.priority)}>
+                  <li key={i} className={this.priorityColorAndIsCompleted(todo.priority)}>
                     <div className='form-group'>
                       <label name='todo-text-label'>Description</label>
                         <textarea 

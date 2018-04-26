@@ -16,7 +16,8 @@ export class ViewTodos extends React.Component {
                           updateEditingTodoText={this.props.updateEditingTodoText}
                           updateEditingPriority={this.props.updateEditingPriority}
                           handleEditingSaveClick={this.props.handleEditingSaveClick}
-                          handleDeleteClick={this.props.handleDeleteClick} />
+                          handleDeleteClick={this.props.handleDeleteClick}
+                          handleFormCheckboxInput={this.props.handleFormCheckboxInput} />
     }
   }
   

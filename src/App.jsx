@@ -30,6 +30,7 @@ class App extends Component {
     this.updateCreateTodoText = this.updateCreateTodoText.bind(this);
     this.updateTodoPriority = this.updateTodoPriority.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleFormCheckboxInput = this.handleFormCheckboxInput.bind(this);
   }
 
   handleCreate(e) {
@@ -151,24 +152,24 @@ class App extends Component {
     this.setState({ todos });
   }
 
-  // handleFormCheckInput(id) {
-  //   for(var i in this.state.todos) {
-  //     if(this.state.todos[i].id == id) {
-  //       var toggleIsCompleted = this.state.todos[i];
-  //       this.toggleIndexNumIsCompleted = i;
-  //     }
-  //   }
-  //   let todo = {
-  //     text: this.state.text,
-  //     priority: this.state.priority,
-  //     editEnabled: this.state.editEnabled,
-  //     id: this.state.id,
-  //     isCompleted: toggleIsCompleted.isCompleted ? false : true
-  //   }
-  //   let todos = [...this.state.todos];
-  //   todos.splice(this.toggleIndexNumIsCompleted, 1, 1)
-  //   this.setState({ todos });
-  // }
+  handleFormCheckboxInput(id) {
+    for(var i in this.state.todos) {
+      if(this.state.todos[i].id == id) {
+        var toggleIsCompleted = this.state.todos[i];
+        this.toggleIndexNumIsCompleted = i;
+      }
+    }
+    let todo = {
+      text: toggleIsCompleted.text,
+      priority: toggleIsCompleted.priority,
+      editEnabled: toggleIsCompleted.editEnabled,
+      id: toggleIsCompleted.id,
+      isCompleted: toggleIsCompleted.isCompleted ? false : true
+    }
+    let todos = [...this.state.todos];
+    todos.splice(this.toggleIndexNumIsCompleted, 1, todo);
+    this.setState({ todos });
+  }
 
   render() {
 
@@ -193,7 +194,8 @@ class App extends Component {
               updateEditingTodoText={this.updateEditingTodoText}
               updateEditingPriority={this.updateEditingPriority}
               handleEditingSaveClick={this.handleEditingSaveClick}
-              handleDeleteClick={this.handleDeleteClick} />
+              handleDeleteClick={this.handleDeleteClick}
+              handleFormCheckboxInput={this.handleFormCheckboxInput} />
           {/* end row div */}
           </div>  
       {/* end container div */}
