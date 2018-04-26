@@ -16,7 +16,7 @@ export class AddNewTodo extends React.Component {
                 <textarea  
                   type='text' rows='3' 
                   className='form-control input-md create-todo-text'
-                  value={this.props.text} 
+                  value={this.props.addingText} 
                   onChange={this.props.updateCreateTodoText} />
             </div>
             <div className='form-group'>
@@ -26,7 +26,7 @@ export class AddNewTodo extends React.Component {
                   className='form-control input-md create-todo-priority'
                   size='1' 
                   type='number'
-                  value={this.props.priority}
+                  value={this.props.addingPriority}
                   onChange={this.props.updateTodoPriority}>
                     <option value='0'>Select a Priority</option>
                     <option value='1'>Low Priority</option>

@@ -8,9 +8,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     const todos = [
-      {text: 'Do grocery shopping', priority: '1', editEnabled: false, id: 1524003462111, isCompleted: false},
-      {text: 'Give a puppy a belly rub', priority: '2', editEnabled: false, id: 1524003485690, isCompleted: false},
-      {text: 'Learn interpretive dance', priority: '3', editEnabled: false, id: 1524003512947, isCompleted: false}
+      {text: 'Do grocery shopping', priority: '1', editEnabled: false, id: 1524003462111, isCompleted: false, addingText: '', addingPriority: '0'},
+      {text: 'Give a puppy a belly rub', priority: '2', editEnabled: false, id: 1524003485690, isCompleted: false, addingText: '', addingText: '0'},
+      {text: 'Learn interpretive dance', priority: '3', editEnabled: false, id: 1524003512947, isCompleted: false, addingText: '', addingText: '0'}
     ];
     
     this.state = {
@@ -19,7 +19,9 @@ class App extends Component {
       priority: 0,
       editEnabled: false,
       id: 0,
-      isCompleted: false
+      isCompleted: false,
+      addingText: '',
+      addingPriority: 0
     };
     this.handleCreate = this.handleCreate.bind(this);
     this.createTodo = this.createTodo.bind(this);
@@ -37,22 +39,26 @@ class App extends Component {
     e.preventDefault();
     let idStamp = new Date().valueOf();
 
-    if(this.state.text == '' || this.state.priority == '0') {
+    if(this.state.addingText == '' || this.state.addingPriority == '0') {
       return alert('Please write some text and/or pick a priority')
     } else {
       let todo = {
-        text: this.state.text,
-        priority: this.state.priority,
+        text: this.state.addingText,
+        priority: this.state.addingPriority,
         editEnabled: false,
         id: idStamp,
-        isCompleted: false
+        isCompleted: false,
+        addingText: '',
+        addingPriority: ''
       }
       this.createTodo(todo);  
       //below line resets text and priority fields to default after user submital
       this.setState({ 
         text: '',
         priority: 0,
-        id: 0
+        id: 0,
+        addingText: '',
+        addingPriority: '0'
       })
     }  
   }
@@ -65,20 +71,26 @@ class App extends Component {
   }
 
   handleEditClick(id) {
-    for(var i in this.state.todos) {
-      if(this.state.todos[i].id == id) {
-        var editTodo = this.state.todos[i]
-        this.editIndexNum = i;
+    for(var j in this.state.todos) {
+      if(this.state.todos[j].editEnabled === true) {
+        return alert('Slow your roll, now! You can only edit one todo at a time!!');
+      } else {
+          for(var i in this.state.todos) {
+            if(this.state.todos[i].id == id) {
+              var editTodo = this.state.todos[i]
+              this.editIndexNum = i;
+            }
+          }
+          let todo = {
+            text: editTodo.text,
+            priority: editTodo.priority,
+            editEnabled: true,
+            id: editTodo.id,
+            isCompleted: editTodo.isCompleted
+          }
+        this.updateTodo(todo);
       }
     }
-    let todo = {
-      text: editTodo.text,
-      priority: editTodo.priority,
-      editEnabled: true,
-      id: editTodo.id,
-      isCompleted: editTodo.isCompleted
-    }
-    this.updateTodo(todo);
   }
 
   updateTodo(todo) {
@@ -130,13 +142,13 @@ class App extends Component {
   //two below for creating new todo
   updateCreateTodoText(e) {
     this.setState({
-      text: e.target.value
+      addingText: e.target.value
     });
   }
 
   updateTodoPriority(e) {
     this.setState({
-      priority: e.target.value
+      addingPriority: e.target.value
     });
   }
   //below method for delete button on ViewTodos
@@ -151,7 +163,7 @@ class App extends Component {
     todos.splice(this.deleteIndexNum, 1,);
     this.setState({ todos });
   }
-
+  //below method for changing isCompleted state upon change in checkbox status
   handleFormCheckboxInput(id) {
     for(var i in this.state.todos) {
       if(this.state.todos[i].id == id) {
@@ -181,9 +193,11 @@ class App extends Component {
         </div>
           <div className='row'>
             <AddNewTodo 
-              todos={this.state.todos}
-              text={this.state.text}
+              // todos={this.state.todos}
+              // text={this.state.text}
               priority={this.state.priority}
+              addingText={this.state.addingText}
+              addingPriority={this.state.addingPriority}
               handleCreate={this.handleCreate}
               updateCreateTodoText={this.updateCreateTodoText}
               updateTodoPriority={this.updateTodoPriority} />
