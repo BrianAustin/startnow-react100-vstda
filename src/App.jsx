@@ -142,15 +142,17 @@ class App extends Component {
   }
   //below method for delete button on ViewTodos
   handleDeleteClick(id) {
-    for(var i in this.state.todos) {
-      if(this.state.todos[i].id == id) {
-        var deleteTodo = this.state.todos[i];
-        this.deleteIndexNum = i;
+    if(confirm('Are you sure you want to delete this Todo?')) {
+      for(var i in this.state.todos) {
+        if(this.state.todos[i].id == id) {
+          var deleteTodo = this.state.todos[i];
+          this.deleteIndexNum = i;
+        }
       }
-    }
-    let todos = [...this.state.todos];
-    todos.splice(this.deleteIndexNum, 1,);
-    this.setState({ todos });
+      let todos = [...this.state.todos];
+      todos.splice(this.deleteIndexNum, 1,);
+      this.setState({ todos });
+    }  
   }
   //below method for changing isCompleted state upon change in checkbox status
   handleFormCheckboxInput(id) {
