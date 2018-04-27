@@ -24,7 +24,6 @@ class App extends Component {
       addingPriority: 0
     };
     this.handleCreate = this.handleCreate.bind(this);
-    this.createTodo = this.createTodo.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleEditingSaveClick = this.handleEditingSaveClick.bind(this);
     this.updateEditingTodoText = this.updateEditingTodoText.bind(this);
@@ -51,7 +50,10 @@ class App extends Component {
         addingText: '',
         addingPriority: ''
       }
-      this.createTodo(todo);  
+      let todos = [...this.state.todos];
+
+      todos.push(todo);
+      this.setState({ todos });      
       //below line resets text and priority fields to default after user submital
       this.setState({ 
         text: '',
@@ -63,24 +65,17 @@ class App extends Component {
     }  
   }
 
-  createTodo(todo) {
-    let todos = [...this.state.todos];
-
-    todos.push(todo);
-    this.setState({ todos });
-  }
-
   handleEditClick(id) {
-    for(var j in this.state.todos) {
-      if(this.state.todos[j].editEnabled === true) {
+    
+      if(this.state.editEnabled === true) {
         return alert('Slow your roll, now! You can only edit one todo at a time!!');
-      } else {
-          for(var i in this.state.todos) {
-            if(this.state.todos[i].id == id) {
-              var editTodo = this.state.todos[i]
-              this.editIndexNum = i;
-            }
+      }
+        for(var i in this.state.todos) {
+          if(this.state.todos[i].id == id) {
+            var editTodo = this.state.todos[i]
+            this.editIndexNum = i;
           }
+        }
           let todo = {
             text: editTodo.text,
             priority: editTodo.priority,
@@ -88,16 +83,13 @@ class App extends Component {
             id: editTodo.id,
             isCompleted: editTodo.isCompleted
           }
-        this.updateTodo(todo);
-      }
-    }
-  }
+        let todos = [...this.state.todos];
 
-  updateTodo(todo) {
-    let todos = [...this.state.todos];
-
-    todos.splice(this.editIndexNum, 1, todo);
-    this.setState({ todos });
+        todos.splice(this.editIndexNum, 1, todo);
+        this.setState({ 
+          todos,
+          editEnabled: true 
+        });
   }
 
   handleEditingSaveClick(e) {
@@ -111,21 +103,18 @@ class App extends Component {
         priority: this.state.priority,
         editEnabled: false,
       }
-      this.saveEditingTodo(todo);
+      let todos = [...this.state.todos];
+
+      todos.splice(this.editIndexNum, 1, todo);
+      this.setState({ todos });      
       //resetting state after user saves
       this.setState({ 
         text: '',
         priority: 0,
-        id: 0
+        id: 0,
+        editEnabled: false
       })
     }
-  }
-
-  saveEditingTodo(todo) {
-    let todos = [...this.state.todos];
-
-    todos.splice(this.editIndexNum, 1, todo);
-    this.setState({ todos });
   }
   //two below for editing todos
   updateEditingTodoText(e) {
@@ -184,7 +173,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <div className='container'>
         <div className='page-header'>
@@ -193,8 +181,6 @@ class App extends Component {
         </div>
           <div className='row'>
             <AddNewTodo 
-              // todos={this.state.todos}
-              // text={this.state.text}
               priority={this.state.priority}
               addingText={this.state.addingText}
               addingPriority={this.state.addingPriority}

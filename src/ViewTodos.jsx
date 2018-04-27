@@ -27,7 +27,7 @@ export class ViewTodos extends React.Component {
         <div className='panel panel-default'>
           <div className='panel-heading'>View Todos</div>
           <div className='panel-body'>
-              {/* below is function to determine if we show EmptyListGreeting or Todo List */}
+            {/* below is function to determine if we show EmptyListGreeting or Todo List */}
             {this.emptyTodosOrNot(this.props.todos.length)}
 
           </div>
