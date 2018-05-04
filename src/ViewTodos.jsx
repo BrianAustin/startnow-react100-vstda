@@ -6,6 +6,7 @@ export class ViewTodos extends React.Component {
   constructor (props) {
     super(props);
   }
+  
   emptyTodosOrNot(todosLength) {
     if(todosLength == 0) {
         return <EmptyListGreeting />
